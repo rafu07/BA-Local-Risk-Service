@@ -16,8 +16,6 @@ module.exports = async (srv) => {
 }); 
 
 srv.after("CREATE", "Risks", async (riskData) => {
-
-        console.log(riskData)
       await messaging.emit("dts/I538951mc/I538951/topic1", {
         ID: riskData.ID,
         title: riskData.title,
