@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.5.2"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "SupplierService.Suppliers": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "createdAt": {
+          "type": "cds.Timestamp",
+          "@odata.Precision": 7,
+          "@odata.Type": "Edm.DateTimeOffset",
+          "@UI.HiddenFilter": true,
+          "@Core.Immutable": true,
+          "@Core.Computed": true,
+          "@Common.Label": "Created On"
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@UI.HiddenFilter": true,
+          "@Core.Immutable": true,
+          "@Core.Computed": true,
+          "doc": "User's unique ID",
+          "@Common.Label": "Created By"
+        },
+        "modifiedAt": {
+          "type": "cds.Timestamp",
+          "@odata.Precision": 7,
+          "@odata.Type": "Edm.DateTimeOffset",
+          "@UI.HiddenFilter": true,
+          "@Core.Computed": true,
+          "@Common.Label": "Changed On"
+        },
+        "modifiedBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@UI.HiddenFilter": true,
+          "@Core.Computed": true,
+          "doc": "User's unique ID",
+          "@Common.Label": "Changed By"
+        },
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.UUID",
+          "@Core.Computed": true
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "industry_sector": {
+          "type": "cds.String",
+          "length": 100
+        },
+        "tax_number": {
+          "type": "cds.LargeString"
+        },
+        "house_number": {
+          "type": "cds.LargeString"
+        },
+        "street": {
+          "type": "cds.Integer"
+        },
+        "post_code": {
+          "type": "cds.LargeString"
+        },
+        "city": {
+          "type": "cds.LargeString"
+        },
+        "country": {
+          "type": "cds.LargeString"
+        }
+      },
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "name",
+          "Value": {
+            "=": "name"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "industry_sector",
+          "Value": {
+            "=": "industry_sector"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "tax_number",
+          "Value": {
+            "=": "tax_number"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "house_number",
+          "Value": {
+            "=": "house_number"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Label": "street",
+          "Value": {
+            "=": "street"
+          }
+        }
+      ],
+      "@UI.FieldGroup#GeneratedGroup1": {
+        "$Type": "UI.FieldGroupType",
+        "Data": [
+          {
+            "$Type": "UI.DataField",
+            "Label": "name",
+            "Value": {
+              "=": "name"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "industry_sector",
+            "Value": {
+              "=": "industry_sector"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "tax_number",
+            "Value": {
+              "=": "tax_number"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "house_number",
+            "Value": {
+              "=": "house_number"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "street",
+            "Value": {
+              "=": "street"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "post_code",
+            "Value": {
+              "=": "post_code"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "city",
+            "Value": {
+              "=": "city"
+            }
+          },
+          {
+            "$Type": "UI.DataField",
+            "Label": "country",
+            "Value": {
+              "=": "country"
+            }
+          }
+        ]
+      },
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "ID": "GeneratedFacet1",
+          "Label": "General Information",
+          "Target": {}
+        }
+      ]
+    },
+    "SupplierService": {
+      "kind": "service",
+      "@cds.external": true
+    }
+  }
+}

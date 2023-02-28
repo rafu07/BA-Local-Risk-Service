@@ -1,0 +1,10 @@
+{
+    "authenticationMethod": "route",
+    "routes": [
+      {
+        "source": "/",
+        "destination": "env_destination_home_risks",
+        "authenticationType": "xsuaa"
+      }
+    ]
+  }

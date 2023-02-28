@@ -1,0 +1,14 @@
+---
+applications:
+- name: Approuter_I538961
+  host: approuter:i538951
+  path: appfolder
+  memory: 128M
+  env:
+    destinations: >
+      [
+          {
+              "name": "env_destination_home",
+              "url": "http://localhost:4004/launchpage.html#Shell-home"
+          }
+      ]
