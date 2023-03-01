@@ -9,7 +9,19 @@
     ],
     "main": "webapp/index.html",
     "scripts": {
-        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
+        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf",
+        "build": "npm run clean && ui5 build --include-task=generateManifestBundle generateCachebusterInfo && npm run zip",
+    "zip": "cd dist && npx bestzip ../resources/risk_service_fiori_i538951-content.zip *",
+    "clean": "npx rimraf fiori-content.zip dist"
     },
-    "devDependencies": { }
+    "ui5": {
+        "dependencies": [
+          "@sap/ui5-builder-webide-extension"
+        ]
+      },
+    "devDependencies": {   "@sapui5/ts-types": "1.71.x",
+    "@ui5/cli": "2.2.6",
+    "@sap/ui5-builder-webide-extension": "1.0.x",
+    "bestzip": "2.1.4",
+    "rimraf": "3.0.2"}
 }

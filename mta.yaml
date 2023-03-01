@@ -1,7 +1,7 @@
 _schema-version: '3.1'
 ID: MyFirstApp
 version: 1.0.0
-description: "A simple CAP project."
+description: A simple CAP project.
 parameters:
   enable-parallel-deployments: true
 build-parameters:
@@ -18,13 +18,12 @@ modules:
     build-parameters:
       builder: npm-ci
     provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+      - name: srv-api
         properties:
-          srv-url: ${default-url}
+          srv-url: '${default-url}'
     requires:
       - name: MyFirstApp-db
-      - name: MyFirstApp-auth
-
+      - name: uaa_risk_service_fiori_i538951
   - name: MyFirstApp-db-deployer
     type: hdb
     path: gen/db
@@ -32,19 +31,101 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: MyFirstApp-db
-
+  - name: risk_service_fiori_i538951-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: uaa_risk_service_fiori_i538951
+        parameters:
+          service-key:
+            name: uaa_risk_service_fiori_i538951-key
+      - name: risk_service_fiori_i538951_html_repo_host
+        parameters:
+          service-key:
+            name: risk_service_fiori_i538951_html_repo_host-key
+      - name: risk_service_fiori_i538951-destination-service
+        parameters:
+          content-target: true
+    parameters:
+      content:
+        subaccount:
+          destinations:
+            - Name: risk_service_fiori_i538951_html_repo_host
+              ServiceInstanceName: risk_service_fiori_i538951-html5-app-host-service
+              ServiceKeyName: risk_service_fiori_i538951_html_repo_host-key
+              sap.cloud.service: risk_service_fiori_i538951
+            - Authentication: OAuth2UserTokenExchange
+              Name: risk_service_fiori_i538951_uaa
+              ServiceInstanceName: risk_service_fiori_i538951-xsuaa-service
+              ServiceKeyName: uaa_risk_service_fiori_i538951-key
+              sap.cloud.service: risk_service_fiori_i538951
+          existing_destinations_policy: update
+    build-parameters:
+      no-source: true
+  - name: risk_service_fiori_i538951_ui_deployer
+    type: com.sap.application.content
+    path: app/risks/
+    requires:
+      - name: risk_service_fiori_i538951_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - risk_service_fiori_i538951-content.zip
+          name: risk_service_fiori_i538951
+          target-path: resources/
+  - name: risk_service_fiori_i538951
+    type: html5
+    path: app/risks
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build
+      supported-platforms: []
 resources:
   - name: MyFirstApp-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: MyFirstApp-auth
+  - name: risk_service_fiori_i538951-destination-service
+    type: org.cloudfoundry.managed-service
+    requires:
+      - name: srv-api
+    parameters:
+      service: destination
+      service-name: risk_service_fiori_i538951-destination-service
+      service-plan: lite
+      config:
+        init_data:
+          subaccount:
+            existing_destinations_policy: update
+            destinations:
+              - Name: risk_service_fiori_i538951_dest
+                Description: CAP sample service
+                Authentication: NoAuthentication
+                ProxyType: Internet
+                Type: HTTP
+                URL: '~{srv-api/srv-url}'
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+  - name: risk_service_fiori_i538951_html_repo_host
     type: org.cloudfoundry.managed-service
     parameters:
-      service: xsuaa
-      service-plan: application
+      service: html5-apps-repo
+      service-name: risk_service_fiori_i538951-html5-app-host-service
+      service-plan: app-host
+  - name: uaa_risk_service_fiori_i538951
+    type: org.cloudfoundry.managed-service
+    parameters:
       path: ./xs-security.json
-      config:
-        xsappname: MyFirstApp-${org}-${space}
-        tenant-mode: dedicated
+      service: xsuaa
+      service-name: risk_service_fiori_i538951-xsuaa-service
+      service-plan: application
+  - name: messaging_risk_service_fiori_i538951
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: enterprise-messaging
+      service-plan: default
+      service-name: messaging_risk_service_fiori_i538951

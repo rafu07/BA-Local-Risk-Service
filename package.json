@@ -59,6 +59,9 @@
     "app/risks"
   ],
   "cds": {
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
     "requires": {
       "[production]": {
         "db": {
@@ -85,6 +88,9 @@
       "messaging": {
         "[hybrid]": {
           "kind": "enterprise-messaging-shared"
+        },
+        "messaging": {
+          "[production]": { "kind": "enterprise-messaging" }
         }
       }
     }

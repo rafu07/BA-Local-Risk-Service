@@ -8,7 +8,7 @@ using { managed } from '@sap/cds/common';
     descr       : String;
     miti        : Association to Mitigations;
     impact      : Integer;
-    criticality : Integer;
+    criticality : Integer null;
     supplier : Association to Suppliers;
   }
 

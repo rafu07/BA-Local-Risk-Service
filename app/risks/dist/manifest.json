@@ -20,8 +20,8 @@
                     "subTitle": "",
                     "icon": ""
                 }
-            }   
-        }, 
+            }
+        },
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
         "dataSources": {
@@ -43,7 +43,7 @@
     "sap.cloud": {
         "public": true,
         "service": "risk_service_fiori_i538951"
-    },      
+    },
     "sap.ui": {
         "technology": "UI5",
         "icons": {

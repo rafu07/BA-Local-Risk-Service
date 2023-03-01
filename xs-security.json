@@ -1,4 +1,7 @@
 {
+  "xsappname": "risk_service_fiori_i538951",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
   "scopes": [
     {
       "name": "$XSAPPNAME.RiskManager",

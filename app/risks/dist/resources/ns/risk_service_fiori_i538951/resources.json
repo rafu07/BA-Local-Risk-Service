@@ -1,0 +1,31 @@
+{
+    "resources": [
+        {
+            "name": "../risks/Component.js"
+        },
+        {
+            "name": "../risks/manifest.json"
+        },
+        {
+            "name": "../risks/i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "../risks/manifest-bundle.zip"
+        },
+        {
+            "name": "../risks/Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "../risks/Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../sap-ui-version.json"
+        },
+        {
+            "name": "../risks/index.html"
+        }
+    ]
+}
