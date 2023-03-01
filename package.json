@@ -87,9 +87,7 @@
       },
       "messaging": {
         "[hybrid]": {
-          "kind": "enterprise-messaging-shared"
-        },
-        "messaging": {
+          "kind": "enterprise-messaging-shared",
           "[production]": { "kind": "enterprise-messaging" }
         }
       }

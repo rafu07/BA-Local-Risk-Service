@@ -24,6 +24,7 @@ modules:
     requires:
       - name: MyFirstApp-db
       - name: uaa_risk_service_fiori_i538951
+      - name: i538951_Event_Mesh
   - name: MyFirstApp-db-deployer
     type: hdb
     path: gen/db
@@ -123,9 +124,8 @@ resources:
       service: xsuaa
       service-name: risk_service_fiori_i538951-xsuaa-service
       service-plan: application
-  - name: messaging_risk_service_fiori_i538951
+  - name: i538951_Event_Mesh
     type: org.cloudfoundry.managed-service
     parameters:
       service: enterprise-messaging
       service-plan: default
-      service-name: messaging_risk_service_fiori_i538951

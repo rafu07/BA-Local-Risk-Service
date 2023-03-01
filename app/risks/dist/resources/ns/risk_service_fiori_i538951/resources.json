@@ -1,14 +1,13 @@
 {
     "resources": [
         {
-            "name": "../risks/Component.js"
+            "name": "../risks/index.html"
         },
         {
             "name": "../risks/manifest.json"
         },
         {
-            "name": "../risks/i18n/i18n.properties",
-            "raw": "i18n/i18n.properties"
+            "name": "../risks/Component.js"
         },
         {
             "name": "../risks/manifest-bundle.zip"
@@ -25,7 +24,8 @@
             "name": "../../sap-ui-version.json"
         },
         {
-            "name": "../risks/index.html"
+            "name": "../risks/i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
         }
     ]
 }
